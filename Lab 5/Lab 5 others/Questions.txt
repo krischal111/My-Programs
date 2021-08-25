@@ -1,0 +1,10 @@
+WAP to read an integer from keyword and returns the sum of even valued digits using the function
+
+Use recursive function to write a C program to calculate the sum of the digits of a given number
+which is a single digit number.if the sum contains two or more than two digits then go on adding
+the digits of the number unless you get a single digit number.[2345=2+3+4+5=14=1+4=5]
+
+WAP TO DISPLAY THE REVERSE OF A NUMBER USING RECURSION.
+
+Write a function to evaluate y=x^n where y and x are floating point numbers to be raised to an 
+integer power using recursion.
