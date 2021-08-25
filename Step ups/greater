@@ -1,0 +1,32 @@
+// define a function in a greater int to find the greater number among 2 numbers
+// wap that uses this function to find the greatest number among 3 numbers.
+
+//larger among 3 numbers
+
+#include<conio.h>
+#include<stdio.h>
+
+int greater(int, int);
+
+int main(){
+    int a,b,c,greatest;
+
+    beginning:
+    printf("\nEnter three numbers separated by comma = ");
+    scanf("%d%d%d",&a,&b,&c);
+    
+    greatest = greater(c,greater(a,b));
+    printf("The greatest number is %d",greatest);
+    getch()
+    return 0;
+    
+}
+
+int greater(int n1, int n2)
+{
+    if(n1>n2)
+        return n1;
+    else
+        return n2;
+
+}
