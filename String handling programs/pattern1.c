@@ -6,15 +6,16 @@ void modprint(char * text, int , int, int);
 
 int main()
 {
-    char inputtext[20] = "PROGRAM";
-    int n = 5;
+    char inputtext[20] = "KNOWPROGRAM";
+    int n = 10;
 
     printf("Enter any text and number of lines = ");
     scanf("%s %d", inputtext, &n);
+
     for(int i = 0; i<n; i++)
     {
         printf("\n%*s",n-i,"");
-        modprint(inputtext, strlen(inputtext), i, i+1);
+        modprint(inputtext, strlen(inputtext), (i*(i+1))/2 , i+1);
     }
     getch();
 }
