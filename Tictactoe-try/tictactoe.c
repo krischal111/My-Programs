@@ -6,16 +6,58 @@ struct game
     char cell[3][3];
 };
 
+void advancecolumn(int n)
+{
+    if(n<0)
+    {
+        for(int i=0; i>n; (--i, printf("\b")));
+        return;
+    }
+
+    int tabs = n/8+1;
+    int back = tabs*8 - n;
+    if(back == 8)
+    {
+        back=0;
+        tabs--;
+    }
+    for(int i=0; i<tabs; (i++, printf("\t")));
+    for(int i=0; i<back; (i++, printf("\b")));
+    return;
+}
+
 void display_game(char * cell)
 {
+    printf("             \n");
     for(int i = 0; i<3; ++i)
     {
         for(int j = 0; j<3; ++j)
         {
-            printf(" %d ", *cell);
+            char ch = *cell;
+            if(ch == 1) ch = 'O';
+            if(ch == 2) ch = 'X';
+            if(ch == 0) ch = ' ';
+
+            if(1)
+            printf(" %c |", ch);
+
+            if(1)
+            {
+                advancecolumn(-(4+j*4));
+                advancecolumn(30 + j*7);
+                if(ch != ' ')
+                    printf("( %c ), ", ch);
+                else
+                    printf("(%d,%d), ", i+1, j+1);
+
+                advancecolumn(j*4+4-(7+30+j*7));
+            }
             cell++;            
         }
-        printf("\n");
+        printf("\b \n");
+        
+        if(i != 2)
+        printf("---|---|--- \n");
     }
 }
 
