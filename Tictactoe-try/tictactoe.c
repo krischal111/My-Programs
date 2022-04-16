@@ -28,9 +28,16 @@ void advancecolumn(int n)
 
 void display_game(char * cell)
 {
-    printf("             \n");
+
+    printf("\n\n***********************************************\n");
+        printf("                Tic-Tac-Toe\n");
+        printf("     Player 1 (O)    -    Player 2 (X)\n");
+        printf("***********************************************\n\n\n");
+
+    // printf("     |     |       \n");
     for(int i = 0; i<3; ++i)
     {
+        printf("     |     |       \n");
         for(int j = 0; j<3; ++j)
         {
             char ch = *cell;
@@ -39,26 +46,36 @@ void display_game(char * cell)
             if(ch == 0) ch = ' ';
 
             if(1)
-            printf(" %c |", ch);
+            printf("  %c  |", ch);
 
             if(1)
             {
-                advancecolumn(-(4+j*4));
-                advancecolumn(30 + j*7);
+                int coordstart = 27,
+                    dispwidth  = 6,
+                    coordwidth = 7;
+                // like: advancecolumn( -(6 + j * 6));
+                // like: advancecolumn( 27 + j * 7);
+                advancecolumn(-(dispwidth+j*dispwidth));
+                advancecolumn(coordstart + j*coordwidth);
                 if(ch != ' ')
                     printf("( %c ), ", ch);
                 else
                     printf("(%d,%d), ", i+1, j+1);
 
-                advancecolumn(j*4+4-(7+30+j*7));
+                // like: advancecolumn(j * 6 + 6 - (7 + 27 + j * 7));
+                advancecolumn(j*dispwidth+dispwidth-(coordwidth+coordstart+j*coordwidth));
             }
             cell++;            
         }
         printf("\b \n");
         
         if(i != 2)
-        printf("---|---|--- \n");
+        printf("_____|_____|_____ \n");
     }
+    printf("     |     |       \n");
+    printf("\n***********************************************\n");
+        printf("       Designed by Krischal in Chitwan\n");
+        printf("***********************************************\n\n");
 }
 
 void display(char cell[3][3])
@@ -190,15 +207,14 @@ int test2()
     char player = 1;
     char nextplayer = 2;
 
-
+    display(g.cell);
+    printf("\n\n");
     while(!(gamestatus = checkgame(g.cell)))
     {
-
-        display(g.cell);
-        printf("Now, player %d has to make the turn.\n",player);
+        printf("Player %d has to make the turn.\n",player);
 
         again:
-        printf("Enter you position = ");
+        printf("Enter your position = ");
         scanf("%d %d", &a, &b);
         a--; b--;
         if(
@@ -208,15 +224,16 @@ int test2()
         goto again;
 
         g.cell[a][b] = player;
-        
-        printf("Player %d made the turn.\n",player);
+
+        display(g.cell);
+        printf("Player %d made the turn.\n\n",player);
+
         // next player's turn
         int temmpp = player;
         player = nextplayer;
         nextplayer = temmpp;
     }
 
-    display(g.cell);
 
     if(gamestatus)
     {
